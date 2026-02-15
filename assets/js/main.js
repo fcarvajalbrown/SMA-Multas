@@ -3,6 +3,30 @@ function formatCLP(value) {
     return '$' + Math.round(value).toLocaleString('es-CL');
 }
 
+// Format number with Chilean thousand separators
+function formatNumber(value) {
+    return value.toLocaleString('es-CL', {maximumFractionDigits: 1});
+}
+
+// Format table numbers on page load
+function formatTableNumbers() {
+    const table = document.getElementById('dataTable');
+    const rows = table.querySelectorAll('tbody tr');
+    
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        // Format UTA column (index 3)
+        const utaCell = cells[3];
+        const utaValue = parseFloat(utaCell.dataset.value);
+        utaCell.textContent = formatNumber(utaValue);
+        
+        // Format CLP column (index 4) 
+        const clpCell = cells[4];
+        const clpValue = parseFloat(clpCell.dataset.value);
+        clpCell.textContent = formatCLP(clpValue);
+    });
+}
+
 // Calculate and display key metrics
 function updateMetrics() {
     const data = window.finesData;
@@ -260,6 +284,7 @@ function setupTableSort() {
 
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
+    formatTableNumbers();
     updateMetrics();
     createCategoryChart();
     createRegionChart();

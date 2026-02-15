@@ -12,7 +12,7 @@
         <header>
             <h1>{{ site.title }}</h1>
             <p class="subtitle">{{ site.description }}</p>
-            <p class="update-info">Valor UTA: ${{ site.uta_value_clp | number_with_delimiter: '.' }}</p>
+            <p class="update-info">Valor UTA: ${{ site.uta_value_clp }}</p>
         </header>
 
         <!-- Key Metrics -->
@@ -86,8 +86,8 @@
                             <td>{{ record.razon_social }}</td>
                             <td>{{ record.categoria | default: "Sin categoría" }}</td>
                             <td>{{ record.region }}</td>
-                            <td data-value="{{ record.multa_uta }}">{{ record.multa_uta | number_with_delimiter: '.' }}</td>
-                            <td data-value="{{ multa_clp }}">{{ multa_clp | number_with_delimiter: '.', separator: '.' | prepend: '$' }}</td>
+                            <td data-value="{{ record.multa_uta }}">{{ record.multa_uta }}</td>
+                            <td data-value="{{ multa_clp }}">${{ multa_clp }}</td>
                             <td data-value="{{ record.fecha_termino }}">{{ record.fecha_termino | date: "%d/%m/%Y" }}</td>
                         </tr>
                         {% endfor %}
@@ -98,7 +98,7 @@
 
         <footer>
             <p>Fuente: Superintendencia del Medio Ambiente | <a href="https://github.com" target="_blank">Código Fuente</a></p>
-            <p>Cómo funciona la conversión UTA: 1 UTA = ${{ site.uta_value_clp | number_with_delimiter: '.' }} CLP</p>
+            <p>Cómo funciona la conversión UTA: 1 UTA = ${{ site.uta_value_clp }} CLP</p>
         </footer>
     </div>
 
