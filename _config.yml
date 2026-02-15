@@ -4,8 +4,8 @@ uta_value_clp: 838668
 # Site configuration
 title: "Multas Ambientales No Pagadas"
 description: "Transparencia de multas ambientales no pagadas en Chile"
-url: ""
-baseurl: ""
+url: "https://fcarvajalbrown.github.io/"
+baseurl: "/SMA-Multas"
 
 # Build settings
 markdown: kramdown
