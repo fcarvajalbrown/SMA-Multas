@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ site.title }}</h1>
+            <p class="subtitle">{{ site.description }}</p>
+            <p class="update-info">Valor UTA: ${{ site.uta_value_clp | number_with_delimiter: '.' }}</p>
+        </header>
+
+        <!-- Key Metrics -->
+        <div class="metrics">
+            <div class="metric-card">
+                <h3>Total Multas</h3>
+                <p class="metric-value" id="total-clp">-</p>
+                <p class="metric-label">CLP</p>
+            </div>
+            <div class="metric-card">
+                <h3>Total UTA</h3>
+                <p class="metric-value" id="total-uta">-</p>
+                <p class="metric-label">UTA</p>
+            </div>
+            <div class="metric-card">
+                <h3>Empresas Sancionadas</h3>
+                <p class="metric-value" id="total-companies">-</p>
+            </div>
+            <div class="metric-card">
+                <h3>Multa Mayor</h3>
+                <p class="metric-value" id="max-fine">-</p>
+                <p class="metric-label">CLP</p>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <div class="chart-container">
+                <h2>Multas por Categoría</h2>
+                <canvas id="categoryChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h2>Multas por Región</h2>
+                <canvas id="regionChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h2>Top 10 Empresas Multadas</h2>
+                <canvas id="companiesChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h2>Distribución de Tamaño de Multas</h2>
+                <canvas id="distributionChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Table Section -->
+        <section class="table-section">
+            <div class="table-controls">
+                <input type="text" id="searchInput" placeholder="Buscar por razón social, categoría o región...">
+            </div>
+            
+            <div class="table-wrapper">
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="razon_social">Razón Social</th>
+                            <th data-sort="categoria">Categoría</th>
+                            <th data-sort="region">Región</th>
+                            <th data-sort="multa_uta">Multa (UTA)</th>
+                            <th data-sort="multa_clp">Multa (CLP)</th>
+                            <th data-sort="fecha_termino">Fecha Término</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in site.data.environmental_unpaid_clean %}
+                        {% assign multa_clp = record.multa_uta | times: site.uta_value_clp %}
+                        <tr>
+                            <td>{{ record.razon_social }}</td>
+                            <td>{{ record.categoria | default: "Sin categoría" }}</td>
+                            <td>{{ record.region }}</td>
+                            <td data-value="{{ record.multa_uta }}">{{ record.multa_uta | number_with_delimiter: '.' }}</td>
+                            <td data-value="{{ multa_clp }}">{{ multa_clp | number_with_delimiter: '.', separator: '.' | prepend: '$' }}</td>
+                            <td data-value="{{ record.fecha_termino }}">{{ record.fecha_termino | date: "%d/%m/%Y" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <p>Fuente: Superintendencia del Medio Ambiente | <a href="https://github.com" target="_blank">Código Fuente</a></p>
+            <p>Cómo funciona la conversión UTA: 1 UTA = ${{ site.uta_value_clp | number_with_delimiter: '.' }} CLP</p>
+        </footer>
+    </div>
+
+    <!-- Pass data to JavaScript -->
+    <script>
+        window.finesData = [
+            {% for record in site.data.environmental_unpaid_clean %}
+            {
+                id: {{ record.id }},
+                razon_social: "{{ record.razon_social | escape }}",
+                categoria: "{{ record.categoria | default: 'Sin categoría' | escape }}",
+                region: "{{ record.region | escape }}",
+                multa_uta: {{ record.multa_uta }},
+                multa_clp: {{ record.multa_uta | times: site.uta_value_clp }},
+                fecha_termino: "{{ record.fecha_termino }}"
+            }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+        ];
+        window.utaValue = {{ site.uta_value_clp }};
+    </script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

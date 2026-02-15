@@ -1,0 +1,17 @@
+# UTA conversion value (update as needed)
+uta_value_clp: 838668
+
+# Site configuration
+title: "Multas Ambientales No Pagadas"
+description: "Transparencia de multas ambientales no pagadas en Chile"
+url: ""
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
