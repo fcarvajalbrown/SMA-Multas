@@ -1,4 +1,3 @@
-p · JS
 // Global data storage
 let fullData = [];
 let filteredData = [];
