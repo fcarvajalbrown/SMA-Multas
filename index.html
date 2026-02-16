@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multas Ambientales Chile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Multas Ambientales - Chile</h1>
+            <p>Visualización de datos de multas ambientales</p>
+        </header>
+
+        <section class="controls">
+            <input type="text" id="searchInput" placeholder="Buscar en la tabla...">
+            <select id="categoryFilter">
+                <option value="">Todas las categorías</option>
+            </select>
+            <select id="regionFilter">
+                <option value="">Todas las regiones</option>
+            </select>
+        </section>
+
+        <section class="graphs">
+            <div class="graph-container">
+                <h2>Multas por Categoría</h2>
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="graph-container">
+                <h2>Multas en el Tiempo</h2>
+                <canvas id="timeChart"></canvas>
+            </div>
+            <div class="graph-container">
+                <h2>Distribución Regional</h2>
+                <canvas id="regionChart"></canvas>
+            </div>
+            <div class="graph-container">
+                <h2>Top 10 Empresas</h2>
+                <canvas id="companyChart"></canvas>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <h2>Datos de Multas</h2>
+            <div class="table-wrapper">
+                <table id="multasTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="#">#</th>
+                            <th data-sort="facility">Unidad Fiscalizable</th>
+                            <th data-sort="company">Razón Social</th>
+                            <th data-sort="category">Categoría</th>
+                            <th data-sort="region">Región</th>
+                            <th data-sort="amount">Multa</th>
+                            <th data-sort="date">Fecha Término</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Data loaded by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
