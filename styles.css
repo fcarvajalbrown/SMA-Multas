@@ -84,6 +84,11 @@ header p {
     color: #2c3e50;
 }
 
+.graph-container canvas {
+    max-width: 100%;
+    height: auto;
+}
+
 .table-section {
     background: white;
     padding: 25px;
