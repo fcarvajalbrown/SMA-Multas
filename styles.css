@@ -27,14 +27,7 @@ header {
 
 header h1 {
     font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.subtitle {
-    margin: 5px 0 0 0;  /* Negative top margin pulls it closer to h1 */
-    font-size: 1rem;
-    color: #d4d6da;       /* Lighter gray */
-    font-weight: 300;     /* Lighter weight */
+    margin-bottom: 10px;
 }
 
 header p {
@@ -62,6 +55,34 @@ header p {
 .controls select:focus {
     outline: none;
     border-color: #3498db;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.stat-card p {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
 }
 
 .graphs {

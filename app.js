@@ -1,3 +1,4 @@
+p · JS
 // Global data storage
 let fullData = [];
 let filteredData = [];
@@ -78,6 +79,15 @@ function renderTable() {
         `;
         tbody.appendChild(tr);
     });
+    
+    updateStats();
+}
+
+// Update statistics
+function updateStats() {
+    document.getElementById('totalRecords').textContent = filteredData.length;
+    const totalFines = filteredData.reduce((sum, row) => sum + row.fine, 0);
+    document.getElementById('totalFines').textContent = formatPeso(totalFines);
 }
 
 // Filter functionality
