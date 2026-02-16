@@ -11,9 +11,7 @@
         <header>
             <h1>Multas Ambientales - Chile</h1>
             <p>Visualización de datos de multas ambientales</p>
-            
             <p class="subtitle">By Felipe Carvajal Brown</p>
-
         </header>
 
         <section class="controls">
@@ -29,19 +27,19 @@
         <section class="graphs">
             <div class="graph-container">
                 <h2>Multas por Categoría</h2>
-                <canvas id="categoryChart"></canvas>
+                <canvas id="categoryChart" width="800" height="500"></canvas>
             </div>
             <div class="graph-container">
                 <h2>Multas en el Tiempo</h2>
-                <canvas id="timeChart"></canvas>
+                <canvas id="timelineChart" width="800" height="400"></canvas>
             </div>
             <div class="graph-container">
                 <h2>Distribución Regional</h2>
-                <canvas id="regionChart"></canvas>
+                <canvas id="regionChart" width="800" height="350"></canvas>
             </div>
             <div class="graph-container">
                 <h2>Top 10 Empresas</h2>
-                <canvas id="companyChart"></canvas>
+                <canvas id="topCompaniesChart" width="800" height="350"></canvas>
             </div>
         </section>
 
@@ -60,7 +58,7 @@
                             <th data-sort="date">Fecha Término</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
+                    <tbody id="dataTable">
                         <!-- Data loaded by JS -->
                     </tbody>
                 </table>
@@ -68,7 +66,6 @@
         </section>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
