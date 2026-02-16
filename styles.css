@@ -33,7 +33,7 @@ header h1 {
 .subtitle {
     margin: -10px 0 0 0;  /* Negative top margin pulls it closer to h1 */
     font-size: 1rem;
-    color: #6b7280;       /* Lighter gray */
+    color: #d4d6da;       /* Lighter gray */
     font-weight: 300;     /* Lighter weight */
 }
 
