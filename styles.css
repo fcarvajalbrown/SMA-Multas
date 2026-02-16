@@ -30,6 +30,13 @@ header h1 {
     margin-bottom: 10px;
 }
 
+.subtitle {
+    margin: -10px 0 0 0;  /* Negative top margin pulls it closer to h1 */
+    font-size: 1rem;
+    color: #6b7280;       /* Lighter gray */
+    font-weight: 300;     /* Lighter weight */
+}
+
 header p {
     opacity: 0.9;
 }
